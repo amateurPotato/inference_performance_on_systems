@@ -47,25 +47,23 @@ flask run --host=0.0.0.0 --port=8080
 
 
 Serverless 
-1)Create a bucket for storing model and label map
-2)Create a bucket for input images
-3)Create a bucket for output images
-4Create a bucket for artifacts
-
-upload model and label files in for each model in separate folder
-Upload lambda code in a zip to artifacts bucket
-Upload requirements.zip file to artifact bucket
-
-Create IAM Role: lambda_inference_role with following access for lambda function:
+1) Create a bucket for storing model and label map. 
+2) Create a bucket for input images. 
+3) Create a bucket for output images. 
+4) Create a bucket for artifacts. 
+5) Upload model and label files in for each model in separate folder. 
+6) Upload lambda code in a zip to artifacts bucket. 
+7) Upload requirements.zip file to artifact bucket. 
+8) Create IAM Role: lambda_inference_role with following access for lambda function:  
 ```
-	create cloudwatch logs
-	access above s3 buckets
-	invoke other lambda function
+create cloudwatch logs
+access above s3 buckets
+invoke other lambda function
 ```
 
-Create aws layer with serverless/requirements.zip
+9) Create aws layer with serverless/requirements.zip. 
 
-Create 5 lambda functions:
+10) Create 5 lambda functions:  
 ```
 Runtime: Python 3.6
 Role: lambda_inference_role
@@ -74,6 +72,7 @@ BUCKET_NAME: <use the unique bucket name for model>
 MODEL_FOLDER: < use the folder name for model as per the lambda function>
 TOTAL_CATEGORIES: 90
 ```
+
 Lambda | Timeout | Memory 
 --- | --- | --- 
 ssdlite_mobilenet_v2_coco | 720 | 20 
@@ -81,6 +80,8 @@ faster-rcnn-inception-v2 | 1000 | 30
 ssd_mobilenet_v1 | 750 | 18 
 faster_rcnn_resnet50_coco | 1500 | 40
 faster_rcnn_resnet101_coco | 1800 | 60
+
+11) Create API gateway with 5 resources with POST method on each, and attach corresponding lambda functions
 
 # Result:
 <img width="1090" alt="Screen Shot 2021-05-15 at 10 13 59 AM" src="https://user-images.githubusercontent.com/5769303/118364516-b8ffde00-b566-11eb-8cd0-18c0aa259ed1.png">
