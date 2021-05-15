@@ -1,8 +1,12 @@
 # inference_performance_on_systems
 
-# Goal: 
-Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda)
+# Goal:  
+Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda)  
 
+The project is divided into 3 components:  
+1) ec2: contains all ec2 api files.  
+2) serverless: contains lambda api files.  
+3) object-detection: to be put in the same folder as the ec2/serverless folder contents.  
 # Follow the following steps for EC2:
 1) Create EC2 instance (t2.small, Ubuntu AMI)
 2) Attach static IP
