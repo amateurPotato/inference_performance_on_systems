@@ -3,10 +3,14 @@
 # Goal:  
 Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda).For a detailed description, please refer to the Project Report.pdf present in the repo.  
 
-The project is divided into 3 components:  
+The project is divided into 5 components:  
 1) ec2: contains all ec2 api files.  
 2) serverless: contains lambda api files.  
-3) object-detection: to be put in the same folder as the ec2/serverless folder contents.  
+3) object_detection: to be put in the same folder as the ec2/serverless folder contents.  
+4) serverless.postman_collection.json - API calls examples for serverless setup.  
+5) dlproject-experiments.postman_collection.json - API calls examples for EC2 setup.  
+
+ 
 # Follow the following steps for EC2:
 1) Create EC2 instance (t2.small, Ubuntu AMI)
 2) Attach static IP
