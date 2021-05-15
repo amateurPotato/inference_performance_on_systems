@@ -9,8 +9,6 @@ Our goal is to compare the inference performance of an object detection model in
 3) Run the following commands on by logging in to the remote server
 
 ```
-pip --version
-python3 --version
 curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
 ls -a ~
@@ -18,7 +16,6 @@ vim .profile
 export PATH=~/.local/bin:$PATH
 pip --version
 source ~/.profile
-pip --version
 pip install tensorflow
 
 pip install opencv-python
