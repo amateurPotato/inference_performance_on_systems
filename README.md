@@ -3,7 +3,7 @@
 # Goal: 
 Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda)
 
-# Follow the following steps EC2:
+# Follow the following steps for EC2:
 1) Create EC2 instance (t2.small, Ubuntu AMI)
 2) Attach static IP
 3) Run the following commands on by logging in to the remote server
