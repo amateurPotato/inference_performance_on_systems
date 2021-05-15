@@ -43,6 +43,7 @@ export FLASK_APP=myapp.py
 flask run --host=0.0.0.0 --port=8080
 ```
 5) Use one of the postman calls to test the inference. (dlproject-experiments.postman_collection.json)
+6) Don't forget to change the IP address on the call to the one attached to your EC2 instance.  
 
 # Result:
 <img width="1090" alt="Screen Shot 2021-05-15 at 10 13 59 AM" src="https://user-images.githubusercontent.com/5769303/118364516-b8ffde00-b566-11eb-8cd0-18c0aa259ed1.png">
