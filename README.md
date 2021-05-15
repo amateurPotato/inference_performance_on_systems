@@ -46,7 +46,7 @@ flask run --host=0.0.0.0 --port=8080
 6) Don't forget to change the IP address on the call to the one attached to your EC2 instance.  
 
 
-Serverless 
+# Follow the following steps for Serverless setup: 
 1) Create a bucket for storing model and label map. 
 2) Create a bucket for input images. 
 3) Create a bucket for output images. 
