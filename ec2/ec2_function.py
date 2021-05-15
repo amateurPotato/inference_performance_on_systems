@@ -8,7 +8,6 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import cv2
-#import time
 
 # Import utilites
 from object_detection.utils import label_map_util
@@ -25,20 +24,17 @@ def download_from_s3(BUCKET_NAME=None,KEY=None,img_filename=None):
     s3 = boto3.resource('s3')
     s3.Bucket(BUCKET_NAME).download_file(KEY, img_filename)
     
-def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME = 'image1.jpg', PICK_FROM_S3=False):    
+def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME = 'image1.jpg', PICK_FROM_S3=False): 
+    # Path to frozen detection graph .pb file and label map file, which contains the model that is used
+    # for object detection.   
     if PICK_FROM_S3:
-        # Path to frozen detection graph .pb file, which contains the model that is used
-        # for object detection.
         PATH_TO_CKPT = os.path.join(CWD_PATH,'frozen_inference_graph.pb')
-        # Path to label map file
         PATH_TO_LABELS = os.path.join(CWD_PATH,'label_map.pbtxt')
         
     else:
-        # Path to frozen detection graph .pb file, which contains the model that is used
-        # for object detection.
         PATH_TO_CKPT = os.path.join(CWD_PATH,'inference_graph','frozen_inference_graph.pb')
-        # Path to label map file
         PATH_TO_LABELS = os.path.join(CWD_PATH,'training','label_map.pbtxt')
+
     # Path to image
     PATH_TO_IMAGE = os.path.join("/home/ubuntu/project",IMAGE_NAME)
 
@@ -46,10 +42,7 @@ def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME 
     NUM_CLASSES = NUM_CLASSES
 
     # Load the label map.
-    # Label maps map indices to category names, so that when our convolution
-    # network predicts `5`, we know that this corresponds to `king`.
-    # Here we use internal utility functions, but anything that returns a
-    # dictionary mapping integers to appropriate string labels would be fine
+    # Here we use internal utility functions that returns a dictionary mapping integers to string labels
     label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
     categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
     category_index = label_map_util.create_category_index(categories)
@@ -84,7 +77,6 @@ def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME 
 
     # Load image using OpenCV and
     # expand image dimensions to have shape: [1, None, None, 3]
-    # i.e. a single-column array, where each item in the column has the pixel RGB value
     image = cv2.imread(PATH_TO_IMAGE)
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image_expanded = np.expand_dims(image_rgb, axis=0)
@@ -142,6 +134,7 @@ def ec2_handler(event):
 
     BUCKET = "object-detection-inference-output-images"
 
+    # if s3 option is true, save to s3 else save on ec2
     if event['key']:
         file_to_save = f"ec2-{event['key']}.jpg"
         with open(file_to_save, "wb") as fh:
