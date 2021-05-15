@@ -36,7 +36,7 @@ sudo apt-get install -y python3-opencv
 pip install opencv-python
  pip install psutil
 ```
-3) Keep the 'object detection' folder in the same directory as the 'ec2' folder contents.
+3) Keep the 'object_detection' folder in the same directory as the 'ec2' folder contents.
 4) Run the following commands to start up the flask server:
 ```
 export FLASK_APP=myapp.py
