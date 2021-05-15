@@ -42,7 +42,7 @@ def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME 
     NUM_CLASSES = NUM_CLASSES
 
     # Load the label map.
-    # Here we use internal utility functions that returns a dictionary mapping integers to string labels
+    # returns a dictionary mapping integers to string labels
     label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
     categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
     category_index = label_map_util.create_category_index(categories)
@@ -58,17 +58,14 @@ def od_get_boxes(CWD_PATH=os.getcwd(), NUM_CLASSES=90,min_thresh=0.6,IMAGE_NAME 
 
         sess =tf.compat.v1.Session(graph=detection_graph)
 
-    # Define input and output tensors (i.e. data) for the object detection classifier
 
     # Input tensor is the image
     image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
 
     # Output tensors are the detection boxes, scores, and classes
-    # Each box represents a part of the image where a particular object was detected
     detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
 
     # Each score represents level of confidence for each of the objects.
-    # The score is shown on the result image, together with the class label.
     detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
     detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 
@@ -112,6 +109,7 @@ def ec2_handler(event):
     with open(img_path, "wb") as f:
         f.write(base64.b64decode(body_image64))
 
+    # get model
     if event.get('model_from_s3', False):
         model_path = f"/home/ubuntu/project/s3/{MODEL_MAP[event['model']]}"
         download_from_s3(BUCKET_NAME=MODEL_BUCKET,KEY=os.path.join(MODEL_MAP[event['model']],'inference_graph','frozen_inference_graph.pb'),
