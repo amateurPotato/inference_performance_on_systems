@@ -1,7 +1,7 @@
 # inference_performance_on_systems
 
 # Goal:  
-Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda)  
+Our goal is to compare the inference performance of an object detection model in two different paradigms: server and serverless platforms (AWS EC2 and AWS Lambda).For a detailed description, please refer to the Project Report.pdf present in the repo.  
 
 The project is divided into 3 components:  
 1) ec2: contains all ec2 api files.  
